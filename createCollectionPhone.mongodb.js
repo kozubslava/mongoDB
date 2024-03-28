@@ -19,7 +19,7 @@ db.createCollection("phones", {
   validator: {
     $jsonSchema: {
       bsonType: "object",
-      required: ['model', 'prise', 'isUsed'],
+      required: ["model", "prise", "isUsed"],
       properties: {
         model: {
           bsonType: "string",
@@ -36,7 +36,7 @@ db.createCollection("phones", {
         },
         proportions: {
           bsonType: "object",
-          required: ['thickness', 'height', 'width'],
+          required: ["thickness", "height", "width"],
           properties: {
             thickness: {
               bsonType: "number",
@@ -48,18 +48,18 @@ db.createCollection("phones", {
               bsonType: "number",
             },
           },
-          connection: {
-            bsonType: "array",
-            items: {
-              bsonType: "object",
-              properties: {
-                network: {
-                  bsonType: 'string',
-                },
-                description: {
-                  bsonType: 'string',
-                },
-              }
+        },
+        connection: {
+          bsonType: "array",
+          items: {
+            bsonType: "object",
+            properties: {
+              network: {
+                bsonType: "string",
+              },
+              description: {
+                bsonType: "string",
+              },
             },
           },
         },
@@ -68,3 +68,30 @@ db.createCollection("phones", {
   },
 });
 
+db.phones.insertOne({
+  model: "iPhone",
+  prise: 1500,
+  color: "black",
+  isUsed: false,
+  proportions: {
+    thickness: 1,
+    height: 16,
+    width: 7,
+  },
+  connection: [
+    {
+      network: "3G",
+      description: "Lorem",
+    },
+    {
+      network: "LTE",
+      description: "Lorem 1",
+    },
+    {
+      network: "Bluetooth",
+      description: "Lorem 2",
+    },
+  ],
+});
+
+db.phones.find();
